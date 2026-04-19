@@ -3,11 +3,15 @@ package com.example.silentemergencyalertapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TriggerActivity extends AppCompatActivity {
+
+    Button back;
 
     private int pressCount = 0;
     private long lastPressTime = 0;
@@ -16,6 +20,14 @@ public class TriggerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trigger);
+
+        back=findViewById(R.id.btn);
+        back.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
