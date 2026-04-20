@@ -3,29 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="25dp"
+    android:background="@color/background_dark">
 
     <TextView
         android:id="@+id/tvContactsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contacts"
-        android:textSize="24sp"
+        android:textColor="@color/text_primary"
+        android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="20dp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_marginBottom="12dp"/>
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="12dp"
+        android:background="@color/background_dark"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img" />
 
     <Button
         android:id="@+id/btnAddContact"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Contact"
+        android:text="Add Contact +"
+        android:layout_gravity="end"
+        android:textSize="17sp"
+        android:backgroundTint="@color/primary_blue"
         android:layout_marginBottom="12dp"/>
 
     <androidx.recyclerview.widget.RecyclerView

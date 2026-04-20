@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DashboardActivity extends AppCompatActivity {
 
     TextView tvWelcome;
-    Button btnContacts, btnAlert, btnHistory, btnTrigger;
+    Button btnContacts, btnAlert, btnHistory, btnTrigger,btnQuit;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -23,6 +23,7 @@ public class DashboardActivity extends AppCompatActivity {
         btnContacts = findViewById(R.id.btnContacts);
         btnAlert = findViewById(R.id.btnAlert);
         btnHistory = findViewById(R.id.btnHistory);
+        btnQuit = findViewById(R.id.btnQuit);
 
         sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
 
@@ -48,6 +49,10 @@ public class DashboardActivity extends AppCompatActivity {
 
         btnTrigger.setOnClickListener(v -> {
             startActivity(new Intent(DashboardActivity.this, TriggerActivity.class));
+        });
+
+        btnQuit.setOnClickListener(v -> {
+            finishAffinity();
         });
     }
 }

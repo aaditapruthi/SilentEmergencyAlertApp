@@ -3,6 +3,7 @@ package com.example.silentemergencyalertapp;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,7 +18,7 @@ public class HistoryActivity extends AppCompatActivity {
     ArrayList<HistoryModel> historyList;
     HistoryAdapter adapter;
 
-    Button btnbk;
+    ImageButton btnbk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

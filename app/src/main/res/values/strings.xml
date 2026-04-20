@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SilentEmergencyAlertApp</string>
+    <string name="call_contact">"🚨 Call Emergency Contact"</string>
+    <string name="call_ambulance">"🚑 Call Ambulance"</string>"
+    <string name="call_police">"👮 Call Police"</string>
+    <string name="call_fire">"🚒 Call Fire Brigade"</string>
+    <string name="back">"Back"</string>
+
 </resources>

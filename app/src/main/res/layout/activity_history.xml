@@ -3,23 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="25dp"
+    android:background="@color/background_dark">
 
     <TextView
         android:id="@+id/tvHistoryTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Alert History"
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_marginBottom="12dp"/>
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="20dp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/btnbk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_marginBottom="12dp"/>
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/img"
+        android:layout_marginBottom="12dp"
+        android:background="@color/background_dark"
+        android:scaleType="fitCenter"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerHistory"

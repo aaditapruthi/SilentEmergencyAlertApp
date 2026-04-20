@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,7 +21,7 @@ public class ContactsActivity extends AppCompatActivity {
 
     Button btnAddContact;
 
-    Button btnBack;
+    ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class ContactsActivity extends AppCompatActivity {
     }
 
     private void loadContacts() {
+        contactList.clear();
         Cursor cursor = db.getAllContacts();
 
         while (cursor.moveToNext()) {
@@ -60,6 +62,7 @@ public class ContactsActivity extends AppCompatActivity {
 
             contactList.add(new ContactModel(id, name, phone));
         }
+        cursor.close();
     }
 
     @Override

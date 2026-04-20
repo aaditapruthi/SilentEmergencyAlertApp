@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/background_dark">
 
     <TextView
         android:id="@+id/tvRegisterTitle"
@@ -13,6 +14,7 @@
         android:text="Register"
         android:textSize="28sp"
         android:textStyle="bold"
+        android:textColor="@color/text_primary"
         android:layout_marginBottom="32dp"/>
 
     <EditText
@@ -20,7 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Full Name"
+        android:textColorHint="@color/text_secondary"
         android:padding="12dp"
+        android:textSize="17sp"
+        android:textColor="@color/text_primary"
         android:layout_marginBottom="16dp"/>
 
     <EditText
@@ -28,8 +33,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
+        android:textColorHint="@color/text_secondary"
         android:inputType="textEmailAddress"
         android:padding="12dp"
+        android:textSize="17sp"
+        android:textColor="@color/text_primary"
         android:layout_marginBottom="16dp"/>
 
     <EditText
@@ -37,14 +45,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:textColorHint="@color/text_secondary"
         android:inputType="textPassword"
         android:padding="12dp"
-        android:layout_marginBottom="24dp"/>
+        android:textSize="17sp"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="30dp"/>
 
     <Button
         android:id="@+id/btnSubmitRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"/>
+        android:text="Register"
+        android:textSize="18sp"
+        android:backgroundTint="@color/primary_blue"/>
 
 </LinearLayout>

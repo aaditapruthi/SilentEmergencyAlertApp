@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="25dp"
+    android:background="@color/background_dark">
+
+    <ImageButton
+        android:id="@+id/btnbk"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@color/background_dark"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvTriggerInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Press Volume Up 3 times quickly"
+        android:layout_gravity="center_horizontal|center_vertical"
         android:textSize="20sp"
-        android:textStyle="bold"/>
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:layout_marginBottom="12dp"/>
-
-</LinearLayout>
+        android:textStyle="bold"
+        android:textColor="@color/text_secondary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,14 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TriggerActivity extends AppCompatActivity {
 
-    Button back;
+    ImageButton back;
 
     private int pressCount = 0;
     private long lastPressTime = 0;
@@ -21,10 +21,10 @@ public class TriggerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trigger);
 
-        back=findViewById(R.id.btn);
-        back.setOnClickListener(new View.OnClickListener(){
+        back = findViewById(R.id.btnbk);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 finish();
             }
         });

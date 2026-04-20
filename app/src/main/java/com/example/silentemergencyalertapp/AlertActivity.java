@@ -1,59 +1,90 @@
 package com.example.silentemergencyalertapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.widget.Button;
-import android.widget.Toast;
-import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.card.MaterialCardView;
+
 public class AlertActivity extends AppCompatActivity {
 
-    Button btnSMS, btnCall, btnReturn;
+    MaterialCardView cardSOS, cardAmbulance, cardPolice, cardFire, cardBack;
     DBHelper db;
 
-    private static final int SMS_PERMISSION_CODE = 1;
-    private static final int CALL_PERMISSION_CODE = 2;
+    private static final int CALL_PERMISSION_CODE = 1;
+    private String pendingNumber = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alert);
 
-        btnSMS = findViewById(R.id.btnSendSMS);
-        btnCall = findViewById(R.id.btnCall);
-        btnReturn=findViewById(R.id.btnReturn);
-
         db = new DBHelper(this);
 
-        btnSMS.setOnClickListener(v -> checkSMSPermission());
-        btnCall.setOnClickListener(v -> checkCallPermission());
+        cardSOS = findViewById(R.id.cardSOS);
+        cardAmbulance = findViewById(R.id.cardAmbulance);
+        cardPolice = findViewById(R.id.cardPolice);
+        cardFire = findViewById(R.id.cardFire);
+        cardBack = findViewById(R.id.cardBack);
 
-        btnReturn.setOnClickListener(v -> {
-            finish();
+        cardSOS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callFirstContact();
+            }
+        });
+        cardAmbulance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkCallPermission("108");
+            }
+        });
+        cardPolice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkCallPermission("100");
+            }
+        });
+        cardFire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkCallPermission("101");
+            }
+        });
+        cardBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
         });
     }
 
-    private void checkSMSPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
-                != PackageManager.PERMISSION_GRANTED) {
+    private void callFirstContact() {
+        Cursor cursor = db.getAllContacts();
 
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.SEND_SMS},
-                    SMS_PERMISSION_CODE);
-        } else {
-            sendSMS();
+        if (cursor.getCount() == 0) {
+            Toast.makeText(this, "No emergency contacts saved", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        cursor.moveToFirst();
+        String phone = cursor.getString(2);
+
+        checkCallPermission(phone);
     }
 
-    private void checkCallPermission() {
+    private void checkCallPermission(String number) {
+        pendingNumber = number;
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
                 != PackageManager.PERMISSION_GRANTED) {
 
@@ -61,41 +92,13 @@ public class AlertActivity extends AppCompatActivity {
                     new String[]{Manifest.permission.CALL_PHONE},
                     CALL_PERMISSION_CODE);
         } else {
-            makeCall();
+            makeCall(number);
         }
     }
 
-    private void sendSMS() {
-        Cursor cursor = db.getAllContacts();
-
-        if (cursor.getCount() == 0) {
-            Toast.makeText(this, "No contacts found", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        while (cursor.moveToNext()) {
-            String phone = cursor.getString(2);
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phone, null,
-                    "Emergency! Please help me.", null, null);
-        }
-
-        Toast.makeText(this, "SMS sent to all contacts", Toast.LENGTH_SHORT).show();
-    }
-
-    private void makeCall() {
-        Cursor cursor = db.getAllContacts();
-
-        if (cursor.getCount() == 0) {
-            Toast.makeText(this, "No contacts found", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        cursor.moveToFirst();
-        String phone = cursor.getString(2);
-
+    private void makeCall(String number) {
         Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse("tel:" + phone));
+        intent.setData(Uri.parse("tel:" + number));
         startActivity(intent);
     }
 
@@ -103,17 +106,9 @@ public class AlertActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == SMS_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                sendSMS();
-            } else {
-                Toast.makeText(this, "SMS Permission Denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-
         if (requestCode == CALL_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                makeCall();
+                makeCall(pendingNumber);
             } else {
                 Toast.makeText(this, "Call Permission Denied", Toast.LENGTH_SHORT).show();
             }
