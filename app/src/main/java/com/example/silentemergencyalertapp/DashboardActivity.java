@@ -3,6 +3,7 @@ package com.example.silentemergencyalertapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,35 +25,51 @@ public class DashboardActivity extends AppCompatActivity {
         btnAlert = findViewById(R.id.btnAlert);
         btnHistory = findViewById(R.id.btnHistory);
         btnQuit = findViewById(R.id.btnQuit);
+        btnTrigger = findViewById(R.id.btnTrigger);
 
         sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
 
         String name = sharedPreferences.getString("name", "User");
         tvWelcome.setText("Welcome, " + name);
 
-        btnContacts.setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, ContactsActivity.class);
-            startActivity(intent);
+        btnContacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, ContactsActivity.class);
+                startActivity(intent);
+            }
         });
 
-        btnAlert.setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, AlertActivity.class);
-            startActivity(intent);
+        btnAlert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, AlertActivity.class);
+                startActivity(intent);
+            }
         });
 
-        btnHistory.setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, HistoryActivity.class);
-            startActivity(intent);
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, HistoryActivity.class);
+                startActivity(intent);
+            }
         });
 
-        btnTrigger = findViewById(R.id.btnTrigger);
 
-        btnTrigger.setOnClickListener(v -> {
-            startActivity(new Intent(DashboardActivity.this, TriggerActivity.class));
+        btnTrigger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, TriggerActivity.class);
+                startActivity(intent);
+            }
         });
 
-        btnQuit.setOnClickListener(v -> {
-            finishAffinity();
+        btnQuit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishAffinity();
+            }
         });
     }
 }

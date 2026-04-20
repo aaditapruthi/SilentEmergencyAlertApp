@@ -2,6 +2,7 @@ package com.example.silentemergencyalertapp;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,7 +26,12 @@ public class AddContactActivity extends AppCompatActivity {
 
         db = new DBHelper(this);
 
-        btnSave.setOnClickListener(v -> saveContact());
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveContact();
+            }
+        });
     }
 
     private void saveContact() {

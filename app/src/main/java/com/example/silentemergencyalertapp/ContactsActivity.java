@@ -3,6 +3,7 @@ package com.example.silentemergencyalertapp;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -40,14 +41,20 @@ public class ContactsActivity extends AppCompatActivity {
 
         btnAddContact = findViewById(R.id.btnAddContact);
 
-        btnAddContact.setOnClickListener(v -> {
-            startActivity(new Intent(ContactsActivity.this, AddContactActivity.class));
+        btnAddContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ContactsActivity.this, AddContactActivity.class));
+            }
         });
 
         btnBack = findViewById(R.id.btnBack);
 
-        btnBack.setOnClickListener(v -> {
-            finish();
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
         });
     }
 

@@ -53,10 +53,13 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         holder.tvName.setText(model.name);
         holder.tvPhone.setText(model.phone);
 
-        holder.btnDelete.setOnClickListener(v -> {
-            db.deleteContact(model.id);
-            list.remove(position);
-            notifyDataSetChanged();
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.deleteContact(model.id);
+                list.remove(position);
+                notifyDataSetChanged();
+            }
         });
     }
 

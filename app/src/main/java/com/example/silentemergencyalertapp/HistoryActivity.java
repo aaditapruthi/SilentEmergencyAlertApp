@@ -2,6 +2,7 @@ package com.example.silentemergencyalertapp;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -37,10 +38,12 @@ public class HistoryActivity extends AppCompatActivity {
 
         btnbk = findViewById(R.id.btnbk);
 
-        btnbk.setOnClickListener(v -> {
-            finish();
+        btnbk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
         });
-
     }
 
     private void loadHistory() {
