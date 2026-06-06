@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="25dp"
@@ -12,11 +11,11 @@
         android:id="@+id/btnbk"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="5dp"
         android:background="@color/background_dark"
         android:scaleType="fitCenter"
         android:src="@drawable/img"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,12 +24,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Press Volume Up 3 times quickly"
-        android:layout_gravity="center_horizontal|center_vertical"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/text_secondary"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>/>
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnCancelSOS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel SOS"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTriggerInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

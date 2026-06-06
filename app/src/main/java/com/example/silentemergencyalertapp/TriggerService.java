@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.IBinder;
 import android.telephony.SmsManager;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,10 +18,18 @@ public class TriggerService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         db = new DBHelper(this);
+
         Cursor cursor = db.getAllContacts();
 
         while (cursor.moveToNext()) {
+
             String phone = cursor.getString(2);
+
+            Toast.makeText(
+                    this,
+                    "Sending SMS to " + phone,
+                    Toast.LENGTH_SHORT
+            ).show();
 
             SmsManager.getDefault().sendTextMessage(
                     phone,
@@ -39,6 +48,7 @@ public class TriggerService extends Service {
         cursor.close();
 
         stopSelf();
+
         return START_NOT_STICKY;
     }
 
