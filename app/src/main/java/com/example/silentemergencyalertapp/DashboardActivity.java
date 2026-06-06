@@ -12,7 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DashboardActivity extends AppCompatActivity {
 
     TextView tvWelcome;
-    Button btnContacts, btnAlert, btnHistory, btnTrigger,btnQuit;
+
+    Button btnContacts,
+            btnAlert,
+            btnHistory,
+            btnTrigger,
+            btnStealth,
+            btnQuit;
+
     SharedPreferences sharedPreferences;
 
     @Override
@@ -21,11 +28,13 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         tvWelcome = findViewById(R.id.tvWelcome);
+
         btnContacts = findViewById(R.id.btnContacts);
         btnAlert = findViewById(R.id.btnAlert);
         btnHistory = findViewById(R.id.btnHistory);
-        btnQuit = findViewById(R.id.btnQuit);
         btnTrigger = findViewById(R.id.btnTrigger);
+        btnStealth = findViewById(R.id.btnStealth);
+        btnQuit = findViewById(R.id.btnQuit);
 
         sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
 
@@ -35,7 +44,11 @@ public class DashboardActivity extends AppCompatActivity {
         btnContacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, ContactsActivity.class);
+                Intent intent =
+                        new Intent(
+                                DashboardActivity.this,
+                                ContactsActivity.class
+                        );
                 startActivity(intent);
             }
         });
@@ -43,7 +56,11 @@ public class DashboardActivity extends AppCompatActivity {
         btnAlert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, AlertActivity.class);
+                Intent intent =
+                        new Intent(
+                                DashboardActivity.this,
+                                AlertActivity.class
+                        );
                 startActivity(intent);
             }
         });
@@ -51,16 +68,37 @@ public class DashboardActivity extends AppCompatActivity {
         btnHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, HistoryActivity.class);
+                Intent intent =
+                        new Intent(
+                                DashboardActivity.this,
+                                HistoryActivity.class
+                        );
                 startActivity(intent);
             }
         });
 
-
         btnTrigger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, TriggerActivity.class);
+                Intent intent =
+                        new Intent(
+                                DashboardActivity.this,
+                                TriggerActivity.class
+                        );
+                startActivity(intent);
+            }
+        });
+
+        btnStealth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent =
+                        new Intent(
+                                DashboardActivity.this,
+                                CalculatorActivity.class
+                        );
+
                 startActivity(intent);
             }
         });
