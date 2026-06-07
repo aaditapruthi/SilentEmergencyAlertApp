@@ -2,14 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Hardware -->
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <!-- IMPORTANT for modern Android location (future-proof) -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -20,43 +26,58 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SilentEmergencyAlertApp">
+
+        <!-- FIX: duplicate removed CalculatorActivity -->
+
         <activity
             android:name=".CalculatorActivity"
             android:exported="false" />
-        <activity
-            android:name=".CalculatorActivity"
-            android:exported="false" />
+
         <activity
             android:name=".TriggerActivity"
             android:exported="false" />
+
         <activity
             android:name=".DashboardActivity"
             android:exported="false" />
+
         <activity
             android:name=".ContactsActivity"
             android:exported="false" />
+
         <activity
             android:name=".AddContactActivity"
             android:exported="false" />
+
         <activity
             android:name=".HistoryActivity"
             android:exported="false" />
+
         <activity
             android:name=".AlertActivity"
             android:exported="false" />
-        <activity android:name=".RegisterActivity" />
 
-        <service android:name=".TriggerService" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
 
+        <!-- Launcher Activity -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <!-- Service -->
+        <service
+            android:name=".TriggerService"
+            android:exported="false" />
+
     </application>
 
 </manifest>
